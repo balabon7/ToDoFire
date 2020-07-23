@@ -90,12 +90,40 @@ extension TasksViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.backgroundColor = .clear
-        let taskTitle = tasks[indexPath.row].title
+        let task = tasks[indexPath.row]
+        let isCompleted = task.completed
+        let taskTitle = task.title
         cell.textLabel?.text = taskTitle
         cell.textLabel?.textColor = .white
+        
+        toggleCompletion(cell, isCompleted: isCompleted )
         
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) else { return }
+        
+        let task = tasks[indexPath.row]
+        let isCompleted = !task.completed
+        toggleCompletion(cell, isCompleted: isCompleted)
+        task.ref?.updateChildValues(["completed": isCompleted ])
+    }
+    
+     func toggleCompletion(_ cell: UITableViewCell, isCompleted: Bool ){
+        cell.accessoryType = isCompleted ? .checkmark : .none
+    }
+    
+    // Delete  button in table View
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let task = tasks[indexPath.row]
+            task.ref?.removeValue()
+        }
+    }
     
 }
