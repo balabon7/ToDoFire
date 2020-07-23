@@ -68,8 +68,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="loginTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PPD-Wl-dlX"/>
-                                                    <segue destination="txQ-rH-5vD" kind="show" identifier="loginSegue" id="EZV-Uv-HIS"/>
+                                                    <action selector="loginTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bAp-IF-OzN"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ncd-0d-qLe">
@@ -79,7 +78,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="registerTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BQM-LR-lGO"/>
+                                                    <action selector="registerTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3eh-3Q-827"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -110,14 +109,15 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="emailTextField" destination="ZS6-V5-bUP" id="FTE-dq-c6l"/>
-                        <outlet property="passwordTextField" destination="O4B-95-VL5" id="Rh1-LN-inH"/>
-                        <outlet property="warnLabel" destination="C9R-W3-mUE" id="8qN-ha-swM"/>
+                        <outlet property="emailTextField" destination="ZS6-V5-bUP" id="lHe-Bp-xcD"/>
+                        <outlet property="passwordTextField" destination="O4B-95-VL5" id="gza-i0-7Nx"/>
+                        <outlet property="warnLabel" destination="C9R-W3-mUE" id="PbP-rc-EVL"/>
+                        <segue destination="txQ-rH-5vD" kind="show" identifier="tasksSegue" id="6VG-fA-JVj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="247" y="118"/>
+            <point key="canvasLocation" x="148" y="118"/>
         </scene>
         <!--Tasks-->
         <scene sceneID="h6A-RE-4jQ">
@@ -155,6 +155,11 @@
                         <viewLayoutGuide key="safeArea" id="adt-Re-cMI"/>
                     </view>
                     <navigationItem key="navigationItem" title="Tasks" id="OBs-ON-nlr">
+                        <barButtonItem key="leftBarButtonItem" title="Sign Out" id="CRT-FT-V6G">
+                            <connections>
+                                <action selector="signOutTapped:" destination="Wt2-Ft-5Ph" id="rcM-oY-6Cd"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Odd-Gm-F3t">
                             <connections>
                                 <action selector="addTapped:" destination="Wt2-Ft-5Ph" id="T3t-Iy-qsH"/>
@@ -186,7 +191,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9kj-Ip-43D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="937.68115942028987" y="118.20652173913044"/>
+            <point key="canvasLocation" x="897" y="118"/>
         </scene>
     </scenes>
 </document>
