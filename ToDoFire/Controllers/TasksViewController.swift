@@ -31,13 +31,15 @@ class TasksViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        ref.observe(.value) { [weak self](dataSnapshot) in
-            var _tasks = Array<Task>()
-            for item in dataSnapshot.children {
+        
+        ref.observe(.value) { [weak self](snapshot) in
+            
+            var tasksArray = [Task]()
+            for item in snapshot.children {
                 let task = Task(snapshot: item as! DataSnapshot)
-                _tasks.append(task)
+                tasksArray.append(task)
             }
-            self?.tasks = _tasks
+            self?.tasks = tasksArray
             self?.tableView.reloadData()
         }
     }
@@ -60,8 +62,8 @@ class TasksViewController: UIViewController {
             
         }
         let cancel = UIAlertAction(title: "Cancel", style: .default)
-        alertController.addAction(save)
         alertController.addAction(cancel)
+        alertController.addAction(save)
         present(alertController, animated: true, completion: nil)
     }
     
@@ -81,15 +83,17 @@ extension TasksViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.backgroundColor = .clear
-        cell.textLabel?.text = "Task \(indexPath.row)"
+        let taskTitle = tasks[indexPath.row].title
+        cell.textLabel?.text = taskTitle
         cell.textLabel?.textColor = .white
+        
         return cell
     }
     
